@@ -58,8 +58,7 @@ RUN apt-get update \
   && su - linuxbrew -c 'mkdir ~/.linuxbrew'
 
 USER linuxbrew
-ENV PATH="/home/linuxbrew/.rbenv/bin:/home/linuxbrew/.rbenv/versions/${ruby_version}/bin:${PATH}"
-ENV PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}"
+ENV PATH="/home/linuxbrew/.rbenv/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}"
 WORKDIR /home/linuxbrew
 
 RUN git clone https://github.com/rbenv/rbenv.git .rbenv \
