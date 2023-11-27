@@ -58,12 +58,12 @@ RUN apt-get update \
   && su - linuxbrew -c 'mkdir ~/.linuxbrew'
 
 USER linuxbrew
-ENV PATH="/home/linuxbrew/.rbenv/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}"
+ENV PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}"
 WORKDIR /home/linuxbrew
 
 RUN git clone https://github.com/rbenv/rbenv.git .rbenv \
   && git clone https://github.com/rbenv/ruby-build.git .rbenv/plugins/ruby-build \
-  && rbenv install "${ruby_version}" \
+  && .rbenv/bin/rbenv install "${ruby_version}" \
   && mkdir -p .linuxbrew/Homebrew \
   && git clone https://github.com/Homebrew/brew.git .linuxbrew/Homebrew \
   && mkdir -p .linuxbrew/Homebrew/Library/Homebrew/vendor/portable-ruby \
