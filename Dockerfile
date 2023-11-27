@@ -3,8 +3,8 @@ ARG version=22.04
 # shellcheck disable=SC2154
 FROM ubuntu:"${version}"
 ARG DEBIAN_FRONTEND=noninteractive
-ARG ruby_version=2.6.10
-ARG portable_ruby_version=2.6.10_1
+ARG ruby_version=3.1.4
+ARG portable_ruby_version=3.1.4
 
 # We don't want to manually pin versions, happy to use whatever
 # Ubuntu thinks is best.
@@ -57,7 +57,8 @@ RUN apt-get update \
   && su - linuxbrew -c 'mkdir ~/.linuxbrew'
 
 USER linuxbrew
-ENV PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}"
+ENV PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}" \
+  HOMEBREW_RUBY3=1
 WORKDIR /home/linuxbrew
 
 RUN git clone https://github.com/rbenv/rbenv.git .rbenv \
