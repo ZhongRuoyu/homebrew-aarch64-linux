@@ -68,7 +68,9 @@ RUN git clone https://github.com/rbenv/rbenv.git .rbenv \
   && git clone https://github.com/Homebrew/brew.git .linuxbrew/Homebrew \
   && mkdir -p .linuxbrew/Homebrew/Library/Homebrew/vendor/portable-ruby \
   && ln -s "/home/linuxbrew/.rbenv/versions/${ruby_version}" ".linuxbrew/Homebrew/Library/Homebrew/vendor/portable-ruby/${portable_ruby_version}" \
-  && ln -s "${portable_ruby_version}" .linuxbrew/Homebrew/Library/Homebrew/vendor/portable-ruby/current
+  && ln -s "${portable_ruby_version}" .linuxbrew/Homebrew/Library/Homebrew/vendor/portable-ruby/current \
+  && mkdir -p .linuxbrew/etc/homebrew \
+  && echo 'HOMEBREW_FORCE_VENDOR_RUBY=1' >> .linuxbrew/etc/homebrew/brew.env
 
 RUN mkdir -p \
   .linuxbrew/bin \
