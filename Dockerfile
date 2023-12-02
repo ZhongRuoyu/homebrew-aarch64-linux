@@ -58,8 +58,7 @@ RUN apt-get update \
 
 USER linuxbrew
 ENV PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}" \
-  XDG_CACHE_HOME=/home/linuxbrew/.cache \
-  HOMEBREW_RUBY3=1
+  XDG_CACHE_HOME=/home/linuxbrew/.cache
 WORKDIR /home/linuxbrew
 
 RUN git clone https://github.com/rbenv/rbenv.git .rbenv \
