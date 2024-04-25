@@ -18,6 +18,8 @@ jobs:
       fail-fast: false
       matrix:
         target:
+          - tags: zhongruoyu/homebrew-aarch64-linux:ubuntu24.04
+            version: 24.04
           - tags: zhongruoyu/homebrew-aarch64-linux:ubuntu22.04,zhongruoyu/homebrew-aarch64-linux:latest
             version: 22.04
           - tags: zhongruoyu/homebrew-aarch64-linux:ubuntu20.04
