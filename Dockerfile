@@ -3,8 +3,6 @@ ARG version=22.04
 # shellcheck disable=SC2154
 FROM ubuntu:"${version}"
 ARG DEBIAN_FRONTEND=noninteractive
-ARG ruby_version=3.3.5
-ARG portable_ruby_version=3.3.5
 
 # We don't want to manually pin versions, happy to use whatever
 # Ubuntu thinks is best.
@@ -29,10 +27,6 @@ RUN apt-get update \
   git \
   gpg \
   less \
-  libffi-dev \
-  libreadline-dev \
-  libyaml-dev \
-  libz-dev \
   locales \
   make \
   netbase \
@@ -63,15 +57,8 @@ ENV PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}
   XDG_CACHE_HOME=/home/linuxbrew/.cache
 WORKDIR /home/linuxbrew
 
-RUN git clone https://github.com/rbenv/rbenv.git .rbenv \
-  && git clone https://github.com/rbenv/ruby-build.git .rbenv/plugins/ruby-build \
-  && .rbenv/bin/rbenv install --verbose "${ruby_version}" \
-  && git clone https://github.com/Homebrew/brew.git .linuxbrew/Homebrew \
-  && mkdir -p .linuxbrew/Homebrew/Library/Homebrew/vendor/portable-ruby \
-  && ln -s "/home/linuxbrew/.rbenv/versions/${ruby_version}" ".linuxbrew/Homebrew/Library/Homebrew/vendor/portable-ruby/${portable_ruby_version}" \
-  && ln -s "${portable_ruby_version}" .linuxbrew/Homebrew/Library/Homebrew/vendor/portable-ruby/current \
-  && mkdir -p .linuxbrew/etc/homebrew \
-  && echo 'HOMEBREW_FORCE_VENDOR_RUBY=1' >> .linuxbrew/etc/homebrew/brew.env
+RUN git clone https://github.com/Homebrew/brew.git .linuxbrew/Homebrew \
+  && HOMEBREW_PREFIX=/home/linuxbrew/.linuxbrew /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ZhongRuoyu/homebrew-portable-ruby-aarch64-linux/HEAD/bootstrap.sh)"
 
 RUN mkdir -p \
   .linuxbrew/bin \
