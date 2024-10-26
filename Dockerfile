@@ -4,9 +4,11 @@ ARG version=22.04
 FROM ubuntu:"${version}"
 ARG DEBIAN_FRONTEND=noninteractive
 
-# Set the user ID to the default value of 1001 since different ubuntu
-# versions yield to different user IDs with `useradd`
-ENV USER_ID=1001
+# Deterministic UID (first user). Helps with docker build cache
+ENV USER_ID=1000
+# Delete the default ubuntu user & group UID=1000 GID=1000 in Ubuntu 23.04+
+# that conflicts with the linuxbrew user
+RUN touch /var/mail/ubuntu && chown ubuntu /var/mail/ubuntu && userdel -r ubuntu; true
 
 # We don't want to manually pin versions, happy to use whatever
 # Ubuntu thinks is best.
