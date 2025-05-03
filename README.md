@@ -1,5 +1,17 @@
 # Homebrew on aarch64 Linux
 
+> [!WARNING]
+> This repository is no longer maintained as Homebrew, at the time of writing,
+> has added [Tier 2 support](https://docs.brew.sh/Support-Tiers) for AArch64
+> (ARM64) Linux.
+> Please refer to the
+> [official Homebrew repositories](https://github.com/Homebrew) for the latest
+> updates.
+>
+> You may be interested in my talk on
+> [Homebrew on ARM64 Linux](https://fosdem.org/2025/schedule/event/fosdem-2025-6373-homebrew-on-arm64-linux/)
+> from FOSDEM 2025.
+
 ## Install Homebrew on aarch64 Linux
 
 To freshly install Homebrew on aarch64 Linux, run:
